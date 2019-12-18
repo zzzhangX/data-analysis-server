@@ -1,0 +1,86 @@
+hive:
+  url: jdbc:hive2://107.150.127.106:21050/hgmoyudb;auth=noSasl
+  #  url: jdbc:impala://107.150.127.106:21050/hgmoyudb;UseSasl=0;AuthMech=3;UID=impala;PWD=
+  driver-class-name: org.apache.hive.jdbc.HiveDriver
+  #  driver-class-name: com.cloudera.impala.jdbc41.Driver
+  type: com.alibaba.druid.pool.DruidDataSource
+  user: ''
+  password: ''
+  # 下面为连接池的补充设置，应用到上面所有数据源中
+  # 初始化大小，最小，最大
+  initialSize: 1
+  minIdle: 3
+  maxActive: 100
+  # 配置获取连接等待超时的时间
+  maxWait: 60000
+  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+  timeBetweenEvictionRunsMillis: 60000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  # 打开PSCache，并且指定每个连接上PSCache的大小
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  #druid recycle
+  removeAbandoned: true
+  removeAbandonedTimeout: 300
+  logAbandoned: false
+
+mysql:
+  url: jdbc:mysql://localhost:3306/jwt-demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password: 123456
+  driverClassName: com.mysql.jdbc.Driver #配置MySQL的驱动程序类
+  type: com.alibaba.druid.pool.DruidDataSource   #配置当前要使用的数据源的操作类型那个
+  filters: stat,wall,log4j     #druid监控配置
+  #配置初始化大小/最小/最大
+  initialSize: 5
+  minIdle: 5
+  maxActive: 20
+  #获取连接等待超时时间
+  maxWait: 60000
+  #间隔多久进行一次检测，检测需要关闭的空闲连接
+  timeBetweenEvictionRunsMillis: 60000
+  #一个连接在池中最小生存的时间
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: SELECT 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  useGlobalDataSourceStat: true
+  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+impala:
+  url: jdbc:impala://107.150.127.106:21050/hgmoyudb;UseSasl=0;AuthMech=3;UID='';PWD=''
+  driver-class-name: com.cloudera.impala.jdbc41.Driver
+  type: com.alibaba.druid.pool.DruidDataSource
+  user: ''
+  password: ''
+  # 下面为连接池的补充设置，应用到上面所有数据源中
+  # 初始化大小，最小，最大
+  initialSize: 20
+  minIdle: 10
+  maxActive: 50
+  # 配置获取连接等待超时的时间
+  maxWait: 60000
+  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+  timeBetweenEvictionRunsMillis: 60000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  # 打开PSCache，并且指定每个连接上PSCache的大小
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  #druid recycle
+  removeAbandoned: true
+  removeAbandonedTimeout: 300
+  logAbandoned: false
